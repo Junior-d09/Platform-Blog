@@ -1,27 +1,36 @@
 import { useState, useMemo } from 'react';
+import { POSTS_PER_PAGE } from '@/utils/constants';
 
-export default function usePagination(items = [], perPage = 12) {
-  const [page, setPage] = useState(1);
+export const usePagination = (items, itemsPerPage = POSTS_PER_PAGE) => {
+  const [currentPage, setCurrentPage] = useState(1);
 
-  const total = Math.max(1, Math.ceil(items.length / perPage));
-  const paginated = useMemo(() => {
-    const start = (page - 1) * perPage;
-    return items.slice(start, start + perPage);
-  }, [items, page, perPage]);
+  const totalPages = useMemo(() => {
+    return Math.ceil((items?.length || 0) / itemsPerPage);
+  }, [items, itemsPerPage]);
 
-  function goTo(p) {
-    if (p < 1) p = 1;
-    if (p > total) p = total;
-    setPage(p);
-  }
+  const currentItems = useMemo(() => {
+    if (!items) return [];
+    const startIndex = (currentPage - 1) * itemsPerPage;
+    return items.slice(startIndex, startIndex + itemsPerPage);
+  }, [items, currentPage, itemsPerPage]);
+
+  const goToPage = (page) => {
+    if (page >= 1 && page <= totalPages) {
+      setCurrentPage(page);
+    }
+  };
+
+  const nextPage = () => goToPage(currentPage + 1);
+  const prevPage = () => goToPage(currentPage - 1);
 
   return {
-    page,
-    total,
-    paginated,
-    goTo,
-    next: () => goTo(page + 1),
-    prev: () => goTo(page - 1),
-    setPage
+    currentPage,
+    totalPages,
+    currentItems,
+    goToPage,
+    nextPage,
+    prevPage,
+    hasNext: currentPage < totalPages,
+    hasPrev: currentPage > 1,
   };
-}
+};

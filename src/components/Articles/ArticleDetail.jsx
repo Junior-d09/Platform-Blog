@@ -105,3 +105,27 @@ const ArticleDetail = ({ postId }) => {
 };
 
 export default ArticleDetail;
+
+
+// import { formatDateFake } from '../../utils/helper';
+// import ArticleComment from './ArticleComment';
+// import Link from 'next/link';
+
+// export default function ArticleDetail({ post, comments = [], author }) {
+//   return (
+//     <div className="bg-white p-6 rounded shadow">
+//       <h1 className="text-2xl font-bold">{post.title}</h1>
+//       <div className="mt-2 text-sm text-gray-500">
+//         Par <Link href={`/authors/${author?.id || post.userId}`}><a className="underline">{author?.name ?? 'Auteur'}</a></Link> • {formatDateFake(post.id)}
+//       </div>
+//       <div className="mt-6 text-gray-800 leading-relaxed">{post.body}</div>
+
+//       <section className="mt-8">
+//         <h2 className="text-lg font-semibold">Commentaires ({comments.length})</h2>
+//         <div className="mt-4 space-y-4">
+//           {comments.map(c => <ArticleComment key={c.id} comment={c} />)}
+//         </div>
+//       </section>
+//     </div>
+//   );
+// }

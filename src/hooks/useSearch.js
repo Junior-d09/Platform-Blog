@@ -1,21 +1,26 @@
-import { useMemo, useState } from 'react';
+import { useState, useMemo } from 'react';
+import { filterPostsBySearch, filterPostsByAuthor } from '@/utils/helpers';
 
-export default function useSearch(items = [], keyFields = ['title', 'body']) {
-  const [query, setQuery] = useState('');
-  const [authorFilter, setAuthorFilter] = useState('');
+export const useSearch = (posts) => {
+  const [searchQuery, setSearchQuery] = useState('');
+  const [selectedAuthorId, setSelectedAuthorId] = useState('');
 
-  const results = useMemo(() => {
-    const q = query.trim().toLowerCase();
-    return items.filter(item => {
-      if (authorFilter && String(item.userId) !== String(authorFilter)) return false;
-      if (!q) return true;
-      return keyFields.some(k => (item[k] || '').toString().toLowerCase().includes(q));
-    });
-  }, [items, query, authorFilter, keyFields]);
+  const filteredPosts = useMemo(() => {
+    if (!posts) return [];
+    
+    let filtered = [...posts];
+    filtered = filterPostsBySearch(filtered, searchQuery);
+    filtered = filterPostsByAuthor(filtered, selectedAuthorId);
+    
+    return filtered;
+  }, [posts, searchQuery, selectedAuthorId]);
 
   return {
-    query, setQuery,
-    authorFilter, setAuthorFilter,
-    results,
+    searchQuery,
+    setSearchQuery,
+    selectedAuthorId,
+    setSelectedAuthorId,
+    filteredPosts,
+    resultsCount: filteredPosts.length,
   };
-}
+};

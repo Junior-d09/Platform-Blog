@@ -42,3 +42,17 @@ const ArticleComments = ({ postId }) => {
 };
 
 export default ArticleComments;
+
+
+// export default function ArticleComment({ comment }) {
+//   const initials = (comment.name || '').split(' ').map(s=>s[0]).slice(0,2).join('').toUpperCase();
+//   return (
+//     <div className="flex gap-3 p-3 bg-gray-50 rounded">
+//       <div className="w-10 h-10 rounded-full bg-gray-300 flex items-center justify-center font-bold">{initials || 'U'}</div>
+//       <div>
+//         <div className="text-sm font-semibold">{comment.name} <span className="text-xs text-gray-500">• {comment.email}</span></div>
+//         <div className="text-sm text-gray-700 mt-1">{comment.body}</div>
+//       </div>
+//     </div>
+//   );
+// }

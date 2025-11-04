@@ -1,11 +1,38 @@
-export const truncate = (text, n = 120) => {
-  if (!text) return '';
-  return text.length > n ? text.slice(0, n) + '…' : text;
+export const truncateText = (text, maxLength = 120) => {
+  if (text.length <= maxLength) return text;
+  return text.substring(0, maxLength) + '...';
 };
 
-export const formatDateFake = (id) => {
-  // JSONPlaceholder n'a pas de dates; on crée une date artificielle basée sur id
-  const base = new Date(2020, 0, 1);
-  const d = new Date(base.getTime() + id * 24 * 60 * 60 * 1000);
-  return d.toLocaleDateString();
+export const getInitials = (name) => {
+  return name
+    .split(' ')
+    .map(word => word[0])
+    .join('')
+    .toUpperCase();
+};
+
+export const formatDate = (date) => {
+  return new Date(date).toLocaleDateString('fr-FR', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+  });
+};
+
+export const getCommentsCount = (comments, postId) => {
+  return comments?.filter(c => c.postId === postId).length || 0;
+};
+
+export const filterPostsBySearch = (posts, query) => {
+  if (!query) return posts;
+  const lowerQuery = query.toLowerCase();
+  return posts.filter(post => 
+    post.title.toLowerCase().includes(lowerQuery) ||
+    post.body.toLowerCase().includes(lowerQuery)
+  );
+};
+
+export const filterPostsByAuthor = (posts, userId) => {
+  if (!userId) return posts;
+  return posts.filter(post => post.userId === parseInt(userId));
 };

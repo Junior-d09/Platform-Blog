@@ -1,19 +1,21 @@
-import { API_BASE } from './constants';
+import { API_ENDPOINTS } from './constants';
 
-export async function fetchJSON(path) {
-  const res = await fetch(`${API_BASE}${path}`);
-  if (!res.ok) {
-    const text = await res.text().catch(()=>null);
-    throw new Error(`API error ${res.status}: ${text || res.statusText}`);
+export const fetchData = async (url) => {
+  try {
+    const response = await fetch(url);
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    return await response.json();
+  } catch (error) {
+    console.error('Fetch error:', error);
+    throw error;
   }
-  return res.json();
-}
-
-export const api = {
-  getPosts: () => fetchJSON('/posts'),
-  getPost: (id) => fetchJSON(`/posts/${id}`),
-  getCommentsForPost: (postId) => fetchJSON(`/posts/${postId}/comments`),
-  getUsers: () => fetchJSON('/users'),
-  getUser: (id) => fetchJSON(`/users/${id}`),
-  getPostsByUser: (userId) => fetchJSON(`/posts?userId=${userId}`)
 };
+
+export const fetchPosts = () => fetchData(API_ENDPOINTS.POSTS);
+export const fetchPostById = (id) => fetchData(API_ENDPOINTS.POST_BY_ID(id));
+export const fetchUsers = () => fetchData(API_ENDPOINTS.USERS);
+export const fetchComments = () => fetchData(API_ENDPOINTS.COMMENTS);
+export const fetchCommentsByPostId = (postId) => fetchData(API_ENDPOINTS.COMMENTS_BY_POST(postId));
+export const fetchPostsByUserId = (userId) => fetchData(API_ENDPOINTS.POSTS_BY_USER(userId));

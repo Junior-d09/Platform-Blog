@@ -39,3 +39,20 @@ const AuthorCard = ({ user, postsCount, onViewArticles }) => {
 };
 
 export default AuthorCard;
+
+
+
+// import Link from 'next/link';
+
+// export default function AuthorCard({ user, postsCount = 0 }) {
+//   return (
+//     <div className="bg-white p-4 rounded shadow-sm">
+//       <h3 className="font-semibold">{user.name}</h3>
+//       <p className="text-sm text-gray-600">{user.email} • {user.company?.name}</p>
+//       <div className="mt-3 flex items-center justify-between">
+//         <span className="text-sm text-gray-500">{postsCount} articles</span>
+//         <Link href={`/authors/${user.id}`}><a className="text-sm underline">Voir</a></Link>
+//       </div>
+//     </div>
+//   );
+// }
