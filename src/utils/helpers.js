@@ -4,8 +4,17 @@ export const truncateText = (text, maxLength = 120) => {
 };
 
 export const getInitials = (name) => {
-  return name
-    .split(' ')
+  if (!name) return '??';
+    
+  const words = name.trim().split(' ');
+  
+  if (words.length === 1) {
+    return name.substring(0, 2).toUpperCase();
+  }
+  
+ 
+  return words
+    .slice(0, 2)
     .map(word => word[0])
     .join('')
     .toUpperCase();

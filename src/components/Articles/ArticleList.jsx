@@ -30,7 +30,7 @@ const ArticleList = ({ onViewDetails }) => {
         <p className="text-gray-600">Découvrez nos derniers articles de blog</p>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         {currentItems.map(post => (
           <ArticleCard
             key={post.id}
@@ -52,22 +52,3 @@ const ArticleList = ({ onViewDetails }) => {
 };
 
 export default ArticleList;
-
-
-
-// import ArticleCard from './ArticleCard';
-
-// export default function ArticleList({ posts, usersMap = {}, commentsCount = {} }) {
-//   return (
-//     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-//       {posts.map(p => (
-//         <ArticleCard
-//           key={p.id}
-//           post={p}
-//           authorName={usersMap[p.userId]?.name ?? 'Anonyme'}
-//           commentsCount={commentsCount[p.id] ?? 0}
-//         />
-//       ))}
-//     </div>
-//   );
-// }

@@ -38,9 +38,9 @@ export default function SearchPage() {
 
       <div>
         <div className="mb-8">
-          <h2 className="text-2xl font-bold text-gray-900 mb-4">Recherche d'articles</h2>
+          <h2 className="text-2xl font-bold text-gray-900 mb-4">Recherche d&apos;articles</h2>
           
-          <div className="flex flex-col sm:flex-row gap-4 mb-6">
+          <div className="flex flex-col sm:flex-row gap-4 mb-6 text-gray-950">
             <SearchBar
               value={searchQuery}
               onChange={setSearchQuery}
