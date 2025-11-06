@@ -13,14 +13,15 @@
     "isolatedModules": true,
     "jsx": "react-jsx",
     "incremental": true,
+    "baseUrl": ".",           // ✅ ajouté ici
+    "paths": {
+      "@/*": ["src/*"]        // ✅ fonctionne maintenant
+    },
     "plugins": [
       {
         "name": "next"
       }
-    ],
-    "paths": {
-      "@/*": ["./src/*"]
-    }
+    ]
   },
   "include": [
     "next-env.d.ts",
@@ -28,7 +29,9 @@
     "**/*.tsx",
     ".next/types/**/*.ts",
     ".next/dev/types/**/*.ts",
-    "**/*.mts"
-, "src/app/page.jsx", "src/app/layout.tsx"  ],
+    "**/*.mts",
+    "src/app/page.jsx",
+    "src/app/layout.tsx"
+  ],
   "exclude": ["node_modules"]
 }
