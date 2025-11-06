@@ -11,4 +11,4 @@ export const API_ENDPOINTS = {
 
 export const POSTS_PER_PAGE = 12;
 export const DEFAULT_DATE = '5 Novembre 2025';
-export const PREVIEW_LENGTH = 5;
+export const PREVIEW_LENGTH = 120;
