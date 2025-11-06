@@ -11,7 +11,6 @@ const ArticleCard = ({ post, author, commentsCount, onViewDetails }) => {
   const favorite = isFavorite(post.id);
   const [showComments, setShowComments] = useState(false);
   
-  // Fetch comments only when showComments is true
   const { data: comments, loading: commentsLoading } = useFetch(
     showComments ? API_ENDPOINTS.COMMENTS_BY_POST(post.id) : null
   );
@@ -19,7 +18,6 @@ const ArticleCard = ({ post, author, commentsCount, onViewDetails }) => {
   const handleToggleComments = (e) => {
     e.preventDefault();
     e.stopPropagation();
-    console.log('Toggle comments clicked for post:', post.id); // Debug
     setShowComments(prev => !prev);
   };
 
