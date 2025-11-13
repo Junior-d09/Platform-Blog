@@ -1,7 +1,7 @@
-import '../styles/globals.css';
-import { FavoritesProvider } from '@/context/FavoritesContext';
-import Header from '@/components/layout/Header';
-import Footer from '@/components/layout/Footer';
+import "../styles/globals.css";
+import { FavoritesProvider } from "@/context/FavoritesContext";
+import Header from "@/components/layout/Header";
+import Footer from "@/components/layout/Footer";
 
 export default function App({ Component, pageProps }) {
   return (

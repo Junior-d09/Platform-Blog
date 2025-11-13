@@ -1,5 +1,5 @@
-import React from 'react';
-import { ChevronLeft, ChevronRight } from 'lucide-react';
+import React from "react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 
 const Pagination = ({ currentPage, totalPages, onPageChange }) => {
   const getPageNumbers = () => {
@@ -41,17 +41,17 @@ const Pagination = ({ currentPage, totalPages, onPageChange }) => {
       </button>
 
       <div className="flex gap-1">
-        {getPageNumbers().map(pageNum => (
+        {getPageNumbers().map((pageNum) => (
           <button
             key={pageNum}
             onClick={() => onPageChange(pageNum)}
             className={`w-10 h-10 rounded-lg transition ${
               currentPage === pageNum
-                ? 'bg-blue-600 text-white'
-                : 'border hover:bg-gray-50'
+                ? "bg-blue-600 text-white"
+                : "border hover:bg-gray-50"
             }`}
             aria-label={`Page ${pageNum}`}
-            aria-current={currentPage === pageNum ? 'page' : undefined}
+            aria-current={currentPage === pageNum ? "page" : undefined}
           >
             {pageNum}
           </button>

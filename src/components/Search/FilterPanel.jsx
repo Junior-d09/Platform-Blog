@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 const FilterPanel = ({ users, selectedAuthorId, onAuthorChange }) => {
   return (
@@ -9,7 +9,7 @@ const FilterPanel = ({ users, selectedAuthorId, onAuthorChange }) => {
         className="w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white"
       >
         <option value="">Tous les auteurs</option>
-        {users?.map(user => (
+        {users?.map((user) => (
           <option key={user.id} value={user.id}>
             {user.name}
           </option>

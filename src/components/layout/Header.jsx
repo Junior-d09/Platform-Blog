@@ -1,10 +1,10 @@
-import Navbar from './Navbar'; 
-import React from 'react';
-import Link from 'next/link';
-import { BookOpen } from 'lucide-react';
+import Navbar from "./Navbar";
+import React from "react";
+import Link from "next/link";
+import { BookOpen } from "lucide-react";
 
-const Header = () => { 
-  return ( 
+const Header = () => {
+  return (
     <header className="bg-gradient-to-r from-white via-gray-50 to-white shadow-md border-b sticky top-0 z-50">
       <div className="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between gap-8">
         {/* Logo */}
@@ -14,15 +14,17 @@ const Header = () => {
             <h1 className="text-xl sm:text-2xl md:text-3xl font-extrabold text-gray-900 group-hover:text-blue-600 transition-colors duration-200">
               Free-Blog
             </h1>
-            <p className="hidden sm:block text-xs sm:text-sm text-gray-500">La plateforme de blogs moderne</p>
+            <p className="hidden sm:block text-xs sm:text-sm text-gray-500">
+              La plateforme de blogs moderne
+            </p>
           </div>
         </Link>
-        
+
         {/* Menu navigation */}
         <Navbar />
       </div>
-    </header> 
-  ); 
-}; 
+    </header>
+  );
+};
 
 export default Header;

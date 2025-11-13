@@ -1,11 +1,11 @@
-import React from 'react';
-import { Loader2 } from 'lucide-react';
+import React from "react";
+import { Loader2 } from "lucide-react";
 
-const LoadingSpinner = ({ size = 'large', text = null }) => {
+const LoadingSpinner = ({ size = "large", text = null }) => {
   const sizeClasses = {
-    small: 'w-6 h-6',
-    medium: 'w-8 h-8',
-    large: 'w-12 h-12',
+    small: "w-6 h-6",
+    medium: "w-8 h-8",
+    large: "w-12 h-12",
   };
 
   return (

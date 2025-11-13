@@ -1,18 +1,27 @@
-import React from 'react';
-import { useRouter } from 'next/router';
-import { ChevronLeft, ChevronRight, Heart, User, Calendar, MessageCircle } from 'lucide-react';
-import { useFetch } from '@/hooks/useFetch';
-import { useFavorites } from '@/context/FavoritesContext';
-import { API_ENDPOINTS, DEFAULT_DATE } from '@/utils/constants';
-import LoadingSpinner from '@/components/common/LoadingSpinner';
-import ErrorMessage from '@/components/common/ErrorMessage';
-import ArticleComments from './ArticleComments';
+import React from "react";
+import { useRouter } from "next/router";
+import {
+  ChevronLeft,
+  ChevronRight,
+  Heart,
+  User,
+  Calendar,
+  MessageCircle,
+} from "lucide-react";
+import { useFetch } from "@/hooks/useFetch";
+import { useFavorites } from "@/context/FavoritesContext";
+import { API_ENDPOINTS, DEFAULT_DATE } from "@/utils/constants";
+import LoadingSpinner from "@/components/common/LoadingSpinner";
+import ErrorMessage from "@/components/common/ErrorMessage";
+import ArticleComments from "./ArticleComments";
 
 const ArticleDetail = ({ postId }) => {
   const router = useRouter();
-  const { data: post, loading: postLoading, error: postError } = useFetch(
-    API_ENDPOINTS.POST_BY_ID(postId)
-  );
+  const {
+    data: post,
+    loading: postLoading,
+    error: postError,
+  } = useFetch(API_ENDPOINTS.POST_BY_ID(postId));
   const { data: users } = useFetch(API_ENDPOINTS.USERS);
   const { toggleFavorite, isFavorite } = useFavorites();
 
@@ -20,7 +29,7 @@ const ArticleDetail = ({ postId }) => {
   if (postError) return <ErrorMessage message={postError} />;
   if (!post) return <ErrorMessage message="Article non trouvé" />;
 
-  const author = users?.find(u => u.id === post.userId);
+  const author = users?.find((u) => u.id === post.userId);
   const favorite = isFavorite(post.id);
 
   const handleNavigate = (newId) => {
@@ -41,11 +50,15 @@ const ArticleDetail = ({ postId }) => {
 
       <article className="bg-white rounded-xl shadow-sm border p-8 mb-6">
         <div className="flex justify-between items-start mb-4">
-          <h1 className="text-3xl font-bold text-gray-900 flex-1">{post.title}</h1>
+          <h1 className="text-3xl font-bold text-gray-900 flex-1">
+            {post.title}
+          </h1>
           <button onClick={() => toggleFavorite(post.id)}>
-            <Heart 
+            <Heart
               className={`w-7 h-7 ${
-                favorite ? 'fill-red-500 text-red-500' : 'text-gray-400 hover:text-red-500'
+                favorite
+                  ? "fill-red-500 text-red-500"
+                  : "text-gray-400 hover:text-red-500"
               }`}
             />
           </button>
@@ -70,7 +83,9 @@ const ArticleDetail = ({ postId }) => {
 
         {author && (
           <div className="bg-gray-50 rounded-lg p-4 border">
-            <h3 className="font-semibold text-gray-900 mb-2">À propos de l&apos;auteur</h3>
+            <h3 className="font-semibold text-gray-900 mb-2">
+              À propos de l&apos;auteur
+            </h3>
             <p className="text-gray-700 mb-1">{author.name}</p>
             <p className="text-sm text-gray-600">{author.email}</p>
             {author.company && (
@@ -105,6 +120,3 @@ const ArticleDetail = ({ postId }) => {
 };
 
 export default ArticleDetail;
-
-
-
