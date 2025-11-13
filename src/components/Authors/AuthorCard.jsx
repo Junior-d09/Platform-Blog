@@ -1,5 +1,5 @@
-import React from 'react';
-import { getInitials } from '@/utils/helpers';
+import React from "react";
+import { getInitials } from "@/utils/helpers";
 
 const AuthorCard = ({ user, postsCount, onViewArticles }) => {
   return (
@@ -7,11 +7,11 @@ const AuthorCard = ({ user, postsCount, onViewArticles }) => {
       <div className="w-20 h-20 rounded-full bg-gradiend from-blue-400 to-purple-500 flex items-center justify-center text-white text-3xl font-bold mb-4 mx-auto">
         {getInitials(user.name)}
       </div>
-      
+
       <h3 className="text-xl font-semibold text-gray-900 text-center mb-2">
         {user.name}
       </h3>
-      
+
       <div className="space-y-2 text-sm text-gray-600 mb-4">
         <p className="flex items-center gap-2 justify-center">
           <span>📧</span>
@@ -24,10 +24,11 @@ const AuthorCard = ({ user, postsCount, onViewArticles }) => {
           </p>
         )}
         <p className="text-center font-medium text-blue-600">
-          {postsCount} article{postsCount > 1 ? 's' : ''} publié{postsCount > 1 ? 's' : ''}
+          {postsCount} article{postsCount > 1 ? "s" : ""} publié
+          {postsCount > 1 ? "s" : ""}
         </p>
       </div>
-      
+
       <button
         onClick={() => onViewArticles(user.id)}
         className="w-full py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition"
@@ -39,5 +40,3 @@ const AuthorCard = ({ user, postsCount, onViewArticles }) => {
 };
 
 export default AuthorCard;
-
-

@@ -1,14 +1,14 @@
-import React from 'react';
-import { useRouter } from 'next/router';
-import Head from 'next/head';
-import { Search } from 'lucide-react';
-import ArticleCard from '@/components/articles/ArticleCard';
-import SearchBar from '@/components/search/SearchBar';
-import FilterPanel from '@/components/search/FilterPanel';
-import { useFetch } from '@/hooks/useFetch';
-import { useSearch } from '@/hooks/useSearch';
-import { API_ENDPOINTS } from '@/utils/constants';
-import { getCommentsCount } from '@/utils/helpers';
+import React from "react";
+import { useRouter } from "next/router";
+import Head from "next/head";
+import { Search } from "lucide-react";
+import ArticleCard from "@/components/articles/ArticleCard";
+import SearchBar from "@/components/search/SearchBar";
+import FilterPanel from "@/components/search/FilterPanel";
+import { useFetch } from "@/hooks/useFetch";
+import { useSearch } from "@/hooks/useSearch";
+import { API_ENDPOINTS } from "@/utils/constants";
+import { getCommentsCount } from "@/utils/helpers";
 
 export default function SearchPage() {
   const router = useRouter();
@@ -38,13 +38,12 @@ export default function SearchPage() {
 
       <div>
         <div className="mb-8">
-          <h2 className="text-2xl font-bold text-gray-900 mb-4">Recherche d&apos;articles</h2>
-          
+          <h2 className="text-2xl font-bold text-gray-900 mb-4">
+            Recherche d&apos;articles
+          </h2>
+
           <div className="flex flex-col sm:flex-row gap-4 mb-6 text-gray-950">
-            <SearchBar
-              value={searchQuery}
-              onChange={setSearchQuery}
-            />
+            <SearchBar value={searchQuery} onChange={setSearchQuery} />
             <FilterPanel
               users={users}
               selectedAuthorId={selectedAuthorId}
@@ -53,7 +52,8 @@ export default function SearchPage() {
           </div>
 
           <p className="text-gray-600">
-            {resultsCount} résultat{resultsCount > 1 ? 's' : ''} trouvé{resultsCount > 1 ? 's' : ''}
+            {resultsCount} résultat{resultsCount > 1 ? "s" : ""} trouvé
+            {resultsCount > 1 ? "s" : ""}
           </p>
         </div>
 
@@ -64,11 +64,11 @@ export default function SearchPage() {
           </div>
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {filteredPosts.map(post => (
+            {filteredPosts.map((post) => (
               <ArticleCard
                 key={post.id}
                 post={post}
-                author={users?.find(u => u.id === post.userId)}
+                author={users?.find((u) => u.id === post.userId)}
                 commentsCount={getCommentsCount(comments, post.id)}
                 onViewDetails={() => handleViewDetails(post.id)}
               />

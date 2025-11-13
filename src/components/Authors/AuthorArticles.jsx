@@ -1,12 +1,12 @@
-import React from 'react';
-import { useRouter } from 'next/router';
-import { ChevronLeft } from 'lucide-react';
-import ArticleCard from '@/components/articles/ArticleCard';
-import { useFetch } from '@/hooks/useFetch';
-import { API_ENDPOINTS } from '@/utils/constants';
-import { getInitials, getCommentsCount } from '@/utils/helpers';
-import LoadingSpinner from '@/components/common/LoadingSpinner';
-import ErrorMessage from '@/components/common/ErrorMessage';
+import React from "react";
+import { useRouter } from "next/router";
+import { ChevronLeft } from "lucide-react";
+import ArticleCard from "@/components/articles/ArticleCard";
+import { useFetch } from "@/hooks/useFetch";
+import { API_ENDPOINTS } from "@/utils/constants";
+import { getInitials, getCommentsCount } from "@/utils/helpers";
+import LoadingSpinner from "@/components/common/LoadingSpinner";
+import ErrorMessage from "@/components/common/ErrorMessage";
 
 const AuthorArticles = ({ authorId }) => {
   const router = useRouter();
@@ -16,8 +16,9 @@ const AuthorArticles = ({ authorId }) => {
 
   if (loading) return <LoadingSpinner text="Chargement des articles..." />;
 
-  const author = users?.find(u => u.id === parseInt(authorId));
-  const authorPosts = posts?.filter(p => p.userId === parseInt(authorId)) || [];
+  const author = users?.find((u) => u.id === parseInt(authorId));
+  const authorPosts =
+    posts?.filter((p) => p.userId === parseInt(authorId)) || [];
 
   if (!author) return <ErrorMessage message="Auteur non trouvé" />;
 
@@ -28,7 +29,7 @@ const AuthorArticles = ({ authorId }) => {
   return (
     <div>
       <button
-        onClick={() => router.push('/authors')}
+        onClick={() => router.push("/authors")}
         className="flex items-center gap-2 text-blue-600 hover:text-blue-700 mb-6"
       >
         <ChevronLeft className="w-5 h-5" />
@@ -47,21 +48,26 @@ const AuthorArticles = ({ authorId }) => {
         </div>
         {author.company && (
           <p className="text-gray-700 mb-2">
-            <span className="font-semibold">Entreprise:</span> {author.company.name}
+            <span className="font-semibold">Entreprise:</span>{" "}
+            {author.company.name}
           </p>
         )}
         <p className="text-gray-700">
-          <span className="font-semibold">{authorPosts.length}</span> article{authorPosts.length > 1 ? 's' : ''} publié{authorPosts.length > 1 ? 's' : ''}
+          <span className="font-semibold">{authorPosts.length}</span> article
+          {authorPosts.length > 1 ? "s" : ""} publié
+          {authorPosts.length > 1 ? "s" : ""}
         </p>
       </div>
 
       {authorPosts.length === 0 ? (
         <div className="text-center py-12 bg-white rounded-xl shadow-sm border">
-          <p className="text-gray-500">Cet auteur n&apos;a pas encore publié d&apos;articles</p>
+          <p className="text-gray-500">
+            Cet auteur n&apos;a pas encore publié d&apos;articles
+          </p>
         </div>
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {authorPosts.map(post => (
+          {authorPosts.map((post) => (
             <ArticleCard
               key={post.id}
               post={post}
